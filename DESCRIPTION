@@ -1,0 +1,18 @@
+Package: platipus
+Version: 0.0.1
+Date: 2022-12-20
+Title: Perintal trial in adaptive units (PLATIPUS)
+Authors@R: c(person("Robert", "Mahar", role = c("aut", "cre"),
+                     email = "robert.mahar@unimelb.edu.au"))
+Author: Robert Mahar [aut, cre]
+Maintainer: Robert Mahar <robert.mahar@unimelb.edu.au>
+Depends: 
+  R (>= 4.0.5)
+Imports:
+  rstan (>= 2.21.1)
+Description: An R package encapsulating functions and scripts used to support the design of the PLATIPUS study.
+License: GPL (>=3)
+URL: https://github.com/robertmahar/platipus
+BugReports: https://github.com/robertmahar/platipus/issues
+RoxygenNote: 7.2.2
+Encoding: UTF-8
