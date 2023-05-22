@@ -136,16 +136,24 @@ cppomod
 
 ## Alternatively do this via Stan directly 
 # PO model 
-stanModelPO <- stan_model(file.path("stan", "po_goodrich.stan"))
-fitPO <- fitStan(stanModelPO, singleDat)
-print(fitPO, pars = c("alpha", "beta", "OR"))
+file <- file.path("/stan/po_goodrich.stan")
+mod <- cmdstan_model(file)
+fit <- mod$sample(singleDat, 
+                  chains = 4, 
+                  refresh = 10,
+                  iter_warmup = 1000,
+                  iter_sampling = 2000,
+                  thin = 1,
+                  seed=123)
+fit$summary()
 
-# Fit goodrich unconstrained PPO model.
-stanModelGoodrich <- stan_model(file.path("stan", "ppo_goodrich.stan"))
-fitPPO <- fitStan(stanModelGoodrich, singleDat)
-print(fitPPO, pars = c("alpha", "beta", "tau"))
-
-# Fit constrained PPO model 
-stanModelGoodrich <- stan_model(file.path("stan", "cppo_harrell.stan"))
-fitcPPO <- fitStan(stanModelGoodrich, singleDat)
-print(fitcPPO, pars = c("alpha", "beta", "tau"))
+# PPO model 
+file2 <- file.path("/stan/ppo_goodrich.stan")
+ppomod <- cmdstan_model(file2)
+fit <- ppomod$sample(singleDat, 
+                     chains = 4, 
+                     refresh = 10,
+                     iter_warmup = 100,
+                     iter_sampling = 400,
+                     seed=123)
+fit$summary()
