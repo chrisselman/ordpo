@@ -7,6 +7,14 @@ options(mc.cores = parallel::detectCores()) # use max # CPUs
 library(brms)
 library(rmsb)
 library(truncnorm)
+install.packages("remotes")
+remotes::install_github("stan-dev/cmdstanr")
+install.packages("cmdstanr", repos = c("https://mc-stan.org/r-packages/", getOption("repos")))
+library(cmdstanr)
+check_cmdstan_toolchain(fix = TRUE, quiet = TRUE)
+install_cmdstan(cores = 2)
+cmdstan_path()
+set_cmdstan_path("/.cmdstan/cmdstan-2.32.1")
 
 # ==========================================================================================
 # Define states
